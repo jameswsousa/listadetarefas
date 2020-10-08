@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                   controller: _toDoController,
                   decoration: InputDecoration(
                       labelText: "Nova Tarefa",
-                      labelStyle: TextStyle(color: Colors.blueAccent)),
+                      labelStyle: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold)),
                 )),
                 RaisedButton(
                   color: Colors.blueAccent,
@@ -142,9 +142,7 @@ class _HomeState extends State<Home> {
           _lastRemoved = Map.from(_toDoList[index]);
           _lastRemovedPos = index;
           _toDoList.removeAt(index);
-
           _saveData();
-
           final snack = SnackBar(
             content: Text("Tarefa \"${_lastRemoved["title"]}\" removida!"),
             action: SnackBarAction(
@@ -172,7 +170,6 @@ class _HomeState extends State<Home> {
 
   Future<File> _saveData() async {
     String data = json.encode(_toDoList);
-print(_toDoList);
     final file = await _getFile();
     return file.writeAsString(data);
   }
